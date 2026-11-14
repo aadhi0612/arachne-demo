@@ -1,5 +1,6 @@
-from mako.template import Template
+import requests
 
 
-def render_greeting(name):
-    return Template("Hello ${name | h}!").render(name=name)
+def build_url(base, **params):
+    """Build a request URL offline (no network)."""
+    return requests.Request("GET", base, params=params).prepare().url
